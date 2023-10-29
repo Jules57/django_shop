@@ -1,0 +1,191 @@
+body {
+    background: #fbeed1;
+}
+
+aside {
+    float: left;
+    background: #d6a56f;
+    width: 20%;
+    padding: 2.5%;
+    height: 100vh;
+    color: sienna;
+    border-right: 5px solid #9a6744;
+}
+
+aside img {
+    width: 50px;
+    float: left;
+}
+
+aside .logo {
+    font-size: 30px;
+    margin-left: 10px;
+    font-weight: bold;
+    position: relative;
+    top: -5px;
+}
+
+aside h3 {
+    margin-top: 50px;
+    font-size: 28px;
+}
+
+aside ul {
+    list-style: none;
+    text-decoration: none;
+}
+
+aside ul a {
+    text-decoration: none;
+    color: saddlebrown;
+}
+
+aside ul li {
+    color: saddlebrown;
+    display: block;
+    margin-top: 20px;
+    transition: transform .6s ease;
+}
+
+aside ul li:hover, aside ul a:hover {
+    color: darkslategrey;
+    text-decoration: none;
+    transform: scale(1.10);
+}
+
+main .product-list, .product-detail {
+    background-color: #fbeed1; /* Beige background color for the main section */
+    float: left;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+    color: saddlebrown;
+    text-align: center;
+    width: 75%;
+    margin: 20px; /* Add margins to separate it from the page edges */
+    padding: 20px; /* Add padding around the content */
+}
+
+
+.item, .product-detail {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 75%; /* Make each item take the full width of the container */
+    margin: 10px 0; /* Add spacing between items vertically */
+    /*border: 1px solid #9a6744; !* Darker border around each item *!*/
+    padding: 10px; /* Add padding within each item */
+    background-color: #fbeed1; /* Slightly darker background color */
+    text-align: center; /* Center-align the content within each item */
+}
+
+
+.item img, .product-detail img {
+    max-width: 500px;
+    margin-right: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: left;
+    flex: 0 0 auto;
+}
+
+.item a {
+    text-decoration: none; /* Remove underlines from links */
+    color: #2c1f0d; /* Intense dark chocolate text color */
+}
+
+.item a:hover {
+    color: #e74c3c; /* Change link color on hover */
+}
+
+.item h2, .product-detail h2 {
+    font-size: 18px; /* Adjust the title font size */
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.item p, .product-detail p {
+    font-size: 12px; /* Adjust the price font size */
+    font-weight: bold; /* Make the price bold */
+    color: saddlebrown;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: beige; /* Background color for the footer */
+    text-align: center;
+    padding: 10px 0;
+}
+
+.step-links {
+    display: inline-block;
+}
+
+.step-links a {
+    padding: 5px 10px;
+    margin: 0 5px;
+    text-decoration: none;
+    border: 1px solid #ccc;
+    background-color: sandybrown; /* Background color for pagination links */
+    color: #333;
+    border-radius: 5px;
+}
+
+.current {
+    display: inline-block;
+    padding: 5px 10px;
+    margin: 0 5px;
+    background-color: darkolivegreen; /* Background color for the current page number */
+    color: #fff; /* Text color for the current page number */
+    border: 1px solid gray;
+    border-radius: 5px;
+}
+
+
+form {
+    max-width: 400px; /* Set a maximum width for the form */
+    margin: 0 auto; /* Center-align the form on the page */
+    padding: 20px; /* Add padding to the form container */
+    background-color: rosybrown; /* Background color for the form */
+    border: 1px solid darksalmon; /* Border around the form */
+    border-radius: 5px; /* Rounded corners */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Box shadow for a subtle depth effect */
+}
+
+/* Style form input fields */
+form input[type="text"],
+form input[type="email"],
+form textarea {
+    width: 80%; /* Make the input fields expand to the full width of the form */
+    padding: 10px; /* Add padding to the input fields */
+    margin-bottom: 10px; /* Add spacing between input fields */
+    border: 1px solid #ccc; /* Border around input fields */
+    border-radius: 5px; /* Rounded corners */
+}
+
+/* Style form submit button */
+form button[type="submit"] {
+    background-color: sandybrown; /* Background color for the submit button */
+    color: #2c1f0d; /* Text color */
+    border: none; /* Remove button border */
+    border-radius: 5px; /* Rounded corners */
+    padding: 10px 20px; /* Adjust padding to control button size */
+    cursor: pointer; /* Add pointer cursor on hover */
+    transition: background-color 0.3s; /* Smooth color transition on hover */
+}
+
+form button[type="submit"]:hover {
+    background-color: saddlebrown; /* Change button background color on hover */
+}
