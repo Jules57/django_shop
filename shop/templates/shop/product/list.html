@@ -4,25 +4,45 @@
 {% block title %}Product List{% endblock %}
 
 {% block content %}
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li{% if message.tags == 'success' %} class="success-message"{% elif message.tags == 'error' %}
+                                                      class="error-message"{% endif %}>
+                    {{ message }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <h1>Products</h1>
+
     <div id="main" class="product-list">
-        <h1>Products</h1>
         {% for product in object_list %}
             <div class="item">
                 <a href="{{ product.get_absolute_url }}">
                     <img src="
 
-
                             {% if product.image %}{{ product.image.url }}{% else %}{% static "shop/img/no_image.png" %}{% endif %}">
                 </a>
                 <div class="details">
-                <h2><a href="{{ product.get_absolute_url }}">{{ product.title }}</a></h2>
-                <p>{{ product.description }}</p>
-                <p>Quantity: {{ product.quantity }} pieces</p>
-                <p>${{ product.price }}</p>
+                    <h2><a href="{{ product.get_absolute_url }}">{{ product.title }}</a></h2>
+                    <p>{{ product.description }}</p>
+                    <p>Quantity: {{ product.quantity }} pieces</p>
+                    <p>${{ product.price }}</p>
+                    {% if request.user.is_authenticated %}
+                        <form method="post" action="{% url 'shop:purchase' product.pk %}">
+                            {% csrf_token %}
+                            {{ purchase_form.as_p }}
+                            <input type="submit" value="Buy now">
+                        </form>
+
+                    {% endif %}
                     {% if request.user.is_superuser %}
                         <a href="{% url 'shop:update_product' product.pk %}">Edit this product</a>
+                        <br/>
+                        <a href="{% url 'shop:delete_product' product.pk %}">Delete this product</a>
                     {% endif %}
-            </div>
+                </div>
             </div>
         {% endfor %}
     </div>

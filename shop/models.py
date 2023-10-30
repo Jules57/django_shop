@@ -30,7 +30,7 @@ class Purchase(models.Model):
     bought_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return f'{self.product} bought by {self.user} at {self.purchase_time}'
+        return f'{self.product} bought by {self.user} at {self.bought_at}'
 
 
 class Return(models.Model):

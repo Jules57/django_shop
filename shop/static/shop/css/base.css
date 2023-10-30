@@ -189,3 +189,21 @@ form button[type="submit"] {
 form button[type="submit"]:hover {
     background-color: saddlebrown; /* Change button background color on hover */
 }
+
+.success-message {
+    background-color: #4CAF50; /* Green background color */
+    color: #fff; /* White text color */
+    padding: 20px; /* Padding around the message */
+    border: 1px solid #45a049; /* Green border */
+    margin: 20px;
+    list-style: none;
+}
+
+.error-message {
+    background-color: #f44336; /* Red background color */
+    color: #fff; /* White text color */
+    padding: 20px; /* Padding around the message */
+    border: 1px solid #d32f2f; /* Red border */
+    list-style: none;
+    margin: 20px;
+}

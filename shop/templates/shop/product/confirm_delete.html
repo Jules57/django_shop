@@ -1,0 +1,13 @@
+
+{% extends 'shop/base.html' %}
+{% load static %}
+
+{% block title %}Delete product{% endblock %}
+
+{% block content %}
+<form method="post">
+    {% csrf_token %}
+    <p>Are you sure you want to delete {{ object }}?</p>
+    <input type="submit" value="Confirm">
+</form>
+{% endblock %}
