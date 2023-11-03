@@ -4,6 +4,7 @@
 {% block title %}Add new product{% endblock %}
 
 {% block content %}
+    <h2>Add new product</h2>
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}

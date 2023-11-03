@@ -10,6 +10,9 @@ aside {
     height: 100vh;
     color: sienna;
     border-right: 5px solid #9a6744;
+    /*position: fixed;*/
+    /*top: 0;*/
+    /*left: 0;*/
 }
 
 aside img {
@@ -58,7 +61,7 @@ main .product-list, .product-detail {
     float: left;
     display: flex;
     flex-wrap: wrap;
-    justify-content: left;
+    justify-content: center;
     color: saddlebrown;
     text-align: center;
     width: 75%;
@@ -80,7 +83,7 @@ main .product-list, .product-detail {
 }
 
 
-.item img, .product-detail img {
+.item img, .product-detail img, .purchase-list img {
     max-width: 500px;
     margin-right: 10px;
     display: flex;
@@ -88,6 +91,25 @@ main .product-list, .product-detail {
     align-items: center;
     text-align: left;
     flex: 0 0 auto;
+}
+/*.purchase-list img{*/
+/*    max-width: 200px;*/
+/*    margin-right: 10px;*/
+/*    margin-left: 400px;*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    align-items: center;*/
+/*    text-align: left;*/
+/*    flex: 0 0 auto;*/
+/*}*/
+
+ .purchase-list h2 {
+    font-size: 18px; /* Adjust the title font size */
+    margin: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: left;
 }
 
 .item a {
@@ -108,11 +130,11 @@ main .product-list, .product-detail {
     text-align: center;
 }
 
-.item p, .product-detail p {
+.item p, .product-detail p, .purchase-list p {
     font-size: 12px; /* Adjust the price font size */
     font-weight: bold; /* Make the price bold */
     color: saddlebrown;
-    margin: 0;
+    margin: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -156,7 +178,7 @@ main .product-list, .product-detail {
 
 form {
     max-width: 400px; /* Set a maximum width for the form */
-    margin: 0 auto; /* Center-align the form on the page */
+    margin: 20px auto; /* Center-align the form on the page */
     padding: 20px; /* Add padding to the form container */
     background-color: rosybrown; /* Background color for the form */
     border: 1px solid darksalmon; /* Border around the form */

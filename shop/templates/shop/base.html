@@ -20,6 +20,7 @@
         <li><a href="{% url 'shop:product_list' %}">Products</a></li>
         {% if request.user.is_authenticated %}
             <li><a href="{% url 'shop:logout' %}">Logout</a></li>
+            <li><a href="{% url 'shop:purchase_list' %}">Orders</a></li>
         {% else %}
             <li><a href="{% url 'shop:login' %}">Login</a></li>
             <li><a href="{% url 'shop:register' %}">Register</a></li>
