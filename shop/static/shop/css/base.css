@@ -10,9 +10,9 @@ aside {
     height: 100vh;
     color: sienna;
     border-right: 5px solid #9a6744;
-    /*position: fixed;*/
-    /*top: 0;*/
-    /*left: 0;*/
+    position: fixed;
+    top: 0;
+    left: 0;
 }
 
 aside img {
@@ -26,6 +26,7 @@ aside .logo {
     font-weight: bold;
     position: relative;
     top: -5px;
+    text-shadow: .2em .2em .3em;
 }
 
 aside h3 {
@@ -56,54 +57,55 @@ aside ul li:hover, aside ul a:hover {
     transform: scale(1.10);
 }
 
-main .product-list, .product-detail {
+main {
+    position: absolute;
+    top: 10px;
+    left: 25%;
+}
+
+main .product-list {
     background-color: #fbeed1; /* Beige background color for the main section */
     float: left;
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
+    flex-direction: column;
     justify-content: center;
     color: saddlebrown;
     text-align: center;
-    width: 75%;
-    margin: 20px; /* Add margins to separate it from the page edges */
-    padding: 20px; /* Add padding around the content */
+    width: 100%;
+    margin: 10px; /* Add margins to separate it from the page edges */
+    padding: 10px; /* Add padding around the content */
 }
 
-
-.item, .product-detail {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 75%; /* Make each item take the full width of the container */
-    margin: 10px 0; /* Add spacing between items vertically */
-    /*border: 1px solid #9a6744; !* Darker border around each item *!*/
-    padding: 10px; /* Add padding within each item */
-    background-color: #fbeed1; /* Slightly darker background color */
-    text-align: center; /* Center-align the content within each item */
-}
-
-
-.item img, .product-detail img, .purchase-list img {
-    max-width: 500px;
-    margin-right: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.details {
+    float: left;
     text-align: left;
-    flex: 0 0 auto;
+    width: 40%;
+    margin: 10px;
+    padding: 10px;
 }
-/*.purchase-list img{*/
-/*    max-width: 200px;*/
-/*    margin-right: 10px;*/
-/*    margin-left: 400px;*/
-/*    display: flex;*/
-/*    flex-direction: column;*/
-/*    align-items: center;*/
-/*    text-align: left;*/
-/*    flex: 0 0 auto;*/
-/*}*/
 
- .purchase-list h2 {
+
+.item img, .product-detail img {
+    float: left;
+    margin-right: 10px;
+    margin-bottom: 20px;
+    max-width: 500px;
+    /*max-height: 400px;*/
+    text-align: left;
+
+}
+
+.purchase-list img {
+    /*float: left;*/
+    margin-right: 10px;
+    margin-bottom: 20px;
+    max-width: 500px;
+    /*text-align: center;*/
+
+}
+
+.purchase-list h2 {
     font-size: 18px; /* Adjust the title font size */
     margin: 30px;
     display: flex;
@@ -112,13 +114,23 @@ main .product-list, .product-detail {
     text-align: left;
 }
 
+.purchase-list p, form {
+    font-size: 12px;
+    font-weight: bold;
+    color: saddlebrown;
+    margin: 20px;
+}
+
 .item a {
     text-decoration: none; /* Remove underlines from links */
     color: #2c1f0d; /* Intense dark chocolate text color */
+    margin-left: 20px;
+    text-align: left;
 }
 
-.item a:hover {
-    color: #e74c3c; /* Change link color on hover */
+.item a:hover, .details a:hover {
+    color: #ab5307; /* Change link color on hover */
+    transform: scale(1.10);
 }
 
 .item h2, .product-detail h2 {
@@ -177,11 +189,12 @@ main .product-list, .product-detail {
 
 
 form {
-    max-width: 400px; /* Set a maximum width for the form */
-    margin: 20px auto; /* Center-align the form on the page */
-    padding: 20px; /* Add padding to the form container */
-    background-color: rosybrown; /* Background color for the form */
-    border: 1px solid darksalmon; /* Border around the form */
+    float: left;
+    max-width: 80%; /* Set a maximum width for the form */
+    margin: 30px; /* Center-align the form on the page */
+    padding: 10px; /* Add padding to the form container */
+    background-color: #d9a050; /* Background color for the form */
+    border: 1px solid #82510c; /* Border around the form */
     border-radius: 5px; /* Rounded corners */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Box shadow for a subtle depth effect */
 }
@@ -199,7 +212,7 @@ form textarea {
 
 /* Style form submit button */
 form button[type="submit"] {
-    background-color: sandybrown; /* Background color for the submit button */
+    background-color: #784704; /* Background color for the submit button */
     color: #2c1f0d; /* Text color */
     border: none; /* Remove button border */
     border-radius: 5px; /* Rounded corners */

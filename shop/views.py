@@ -143,6 +143,7 @@ class ReturnApproveView(SuperUserRequiredMixin, DeleteView):
                 self.object.purchase.product.save()
                 self.object.purchase.user.save()
                 self.object.purchase.delete()
+                messages.success(self.request, f"The order has been successfully returned.")
         return super().form_valid(form=form)
 
 
