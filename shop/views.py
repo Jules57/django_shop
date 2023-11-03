@@ -7,7 +7,7 @@ from django.urls import reverse_lazy
 from django.views.generic import CreateView, ListView, DetailView, UpdateView, DeleteView
 
 from shop.forms import UserCreateForm, PurchaseCreateForm
-from shop.models import Product, Purchase
+from shop.models import Product, Purchase, Return
 
 
 class SuperUserRequiredMixin(LoginRequiredMixin, UserPassesTestMixin):
@@ -92,3 +92,11 @@ class PurchaseCreateView(LoginRequiredMixin, CreateView):
             self.request.user.save()
         messages.success(self.request, f"Your purchase of '{product.title}' has been successfully completed.")
         return super().form_valid(form=form)
+
+
+class ReturnCreateView(LoginRequiredMixin, CreateView):
+    login_url = 'login/'
+    model = Return
+    success_url = '/'
+    # form_class = PurchaseCreateForm
+    # http_method_names = ['post']
