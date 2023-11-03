@@ -2,7 +2,8 @@ from django.contrib.auth.views import LogoutView
 from django.urls import path
 
 from shop.views import Login, UserRegisterView, ProductListView, ProductDetailView, ProductCreateView, \
-    ProductUpdateView, ProductDeleteView, PurchaseCreateView, PurchaseListView
+    ProductUpdateView, ProductDeleteView, PurchaseCreateView, PurchaseListView, ReturnCreateView, ReturnApproveView, \
+    ReturnDeleteView, ReturnListView
 
 app_name = 'shop'
 
@@ -14,6 +15,10 @@ urlpatterns = [
     path('product/<int:pk>/delete/', ProductDeleteView.as_view(), name='delete_product'),
     path('purchase/<int:pk>/', PurchaseCreateView.as_view(), name='purchase'),
     path('purchases/', PurchaseListView.as_view(), name='purchase_list'),
+    path('purchases/<int:pk>/return/', ReturnCreateView.as_view(), name='create_return'),
+    path('returns/', ReturnListView.as_view(), name='return_list'),
+    path('returns/<int:pk>/approve/', ReturnApproveView.as_view(), name='approve_return'),
+    path('returns/<int:pk>/decline/', ReturnDeleteView.as_view(), name='delete_return'),
     path('login/', Login.as_view(), name='login'),
     path('logout/', LogoutView.as_view(next_page='/'), name='logout'),
     path('register/', UserRegisterView.as_view(), name='register'),

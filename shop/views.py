@@ -6,7 +6,7 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, ListView, DetailView, UpdateView, DeleteView
 
-from shop.forms import UserCreateForm, PurchaseCreateForm
+from shop.forms import UserCreateForm, PurchaseCreateForm, ReturnCreateForm
 from shop.models import Product, Purchase, Return
 
 
@@ -94,9 +94,58 @@ class PurchaseCreateView(LoginRequiredMixin, CreateView):
         return super().form_valid(form=form)
 
 
+class PurchaseListView(ListView):
+    model = Purchase
+    paginate_by = 10
+    template_name = 'shop/product/purchase_list.html'
+    ordering = ['-bought_at']
+    extra_context = {'return_form': ReturnCreateForm()}
+
+
 class ReturnCreateView(LoginRequiredMixin, CreateView):
     login_url = 'login/'
     model = Return
     success_url = '/'
-    # form_class = PurchaseCreateForm
-    # http_method_names = ['post']
+    form_class = ReturnCreateForm
+
+    def get_success_url(self):
+        return self.success_url
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs.update({
+            'request': self.request,
+            'purchase_pk': self.kwargs['pk']})
+        return kwargs
+
+    def form_invalid(self, form):
+        return HttpResponseRedirect(self.success_url)
+
+
+class ReturnListView(SuperUserRequiredMixin, ListView):
+    model = Return
+    paginate_by = 10
+    template_name = 'shop/product/return_list.html'
+    ordering = ['-returned_at']
+    extra_context = {'return_form': ReturnCreateForm()}
+
+
+class ReturnApproveView(SuperUserRequiredMixin, DeleteView):
+    model = Return
+    success_url = reverse_lazy('shop:return_list')
+
+    def form_valid(self, form):
+        if self.object:
+            self.object.purchase.product.quantity += self.object.purchase.product_quantity
+            self.object.purchase.user.wallet += self.object.purchase.product_quantity * self.object.purchase.product.price
+
+            with transaction.atomic():
+                self.object.purchase.product.save()
+                self.object.purchase.user.save()
+                self.object.purchase.delete()
+        return super().form_valid(form=form)
+
+
+class ReturnDeleteView(SuperUserRequiredMixin, DeleteView):
+    model = Return
+    success_url = reverse_lazy('shop:return_list')

@@ -7,11 +7,20 @@
     <h2>Your orders:</h2>
     {% for purchase in object_list %}
         <div class="purchase-list">
-        <h2>Product: {{ purchase.product }}</h2>
-            <img src="{% if purchase.product.image %}{{ purchase.product.image.url }}{% else %}{% static "shop/img/no_image.png" %}{% endif %}">
-        <p>Quantity: {{ purchase.product_quantity }}</p>
-        <p>Price per item: {{ purchase.product.price }}</p>
-        <p>Date: {{ purchase.bought_at }}</p>
+            <h2>Product: {{ purchase.product }}</h2>
+            <img src="
+
+
+                    {% if purchase.product.image %}{{ purchase.product.image.url }}{% else %}{% static "shop/img/no_image.png" %}{% endif %}">
+            <p>Quantity: {{ purchase.product_quantity }}</p>
+            <p>Price per item: {{ purchase.product.price }}</p>
+            <p>Date: {{ purchase.bought_at }}</p>
+            {% if request.user.is_authenticated %}
+                <form method="post" action="{% url 'shop:create_return' purchase.pk %}">
+                    {% csrf_token %}
+                    <input type="submit" value="Return">
+                </form>
+            {% endif %}
         </div>
     {% endfor %}
 {% endblock %}

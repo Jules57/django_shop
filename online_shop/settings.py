@@ -132,3 +132,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = "shop.User"
 
 LOGIN_URL = 'login/'
+
+# Allowed time for purchase return in minutes
+ALLOWED_RETURN_TIME = 3
