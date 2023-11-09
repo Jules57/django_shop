@@ -1,5 +1,5 @@
 from django.contrib import messages
-from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin, AccessMixin
 from django.contrib.auth.views import LoginView
 from django.db import transaction
 from django.http import HttpResponseRedirect
@@ -10,7 +10,7 @@ from shop.forms import UserCreateForm, PurchaseCreateForm, ReturnCreateForm
 from shop.models import Product, Purchase, Return
 
 
-class SuperUserRequiredMixin(LoginRequiredMixin, UserPassesTestMixin):
+class SuperUserRequiredMixin(UserPassesTestMixin, AccessMixin):
     def test_func(self):
         return self.request.user.is_superuser
 
