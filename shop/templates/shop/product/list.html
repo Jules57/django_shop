@@ -1,0 +1,66 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+
+{% block title %}Product List{% endblock %}
+
+{% block content %}
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li{% if message.tags == 'success' %} class="success-message"{% elif message.tags == 'error' %}
+                                                      class="error-message"{% endif %}>
+                    {{ message }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <h1>Products</h1>
+
+    <div id="main" class="product-list">
+        {% for product in object_list %}
+            <div class="item">
+                <a href="{{ product.get_absolute_url }}">
+                    <img src="
+
+                            {% if product.image %}{{ product.image.url }}{% else %}{% static "shop/img/no_image.png" %}{% endif %}">
+                </a>
+                <div class="item-details">
+                    <h2><a href="{{ product.get_absolute_url }}">{{ product.title }}</a></h2>
+                    <p>{{ product.description }}</p>
+                    <p>Quantity: {{ product.quantity }} pieces</p>
+                    <p>Price: ${{ product.price }}</p>
+                    {% if request.user.is_authenticated %}
+                        <form method="post" action="{% url 'shop:purchase' product.pk %}">
+                            {% csrf_token %}
+                            {{ purchase_form.as_p }}
+                            <input type="submit" value="Buy now">
+                        </form>
+
+                    {% endif %}
+                    {% if request.user.is_superuser %}
+                        <a href="{% url 'shop:update_product' product.pk %}">Edit this product</a>
+                        <br/>
+                        <a href="{% url 'shop:delete_product' product.pk %}">Delete this product</a>
+                    {% endif %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <div class="footer">
+        <div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">next</a>
+        {% endif %}
+    </span>
+        </div>
+    </div>
+{% endblock %}

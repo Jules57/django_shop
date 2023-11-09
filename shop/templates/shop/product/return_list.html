@@ -1,0 +1,34 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+
+{% block title %}Product returns{% endblock %}
+
+{% block content %}
+    {% if messages %}
+        {% for message in messages %}
+            <li{% if message.tags == 'success' %} class="success-message"
+            {% elif message.tags == 'error' %} class="error-message"{% endif %}>
+                {{ message }}
+            </li>
+        {% endfor %}
+    {% endif %}
+    <h2>Product returns</h2>
+    {% for return in object_list %}
+        <div class="return-list">
+            <h2>Product: {{ return.purchase.product }}</h2>
+            <p>Product quantity: {{ return.purchase.product_quantity }}</p>
+            <p>User: {{ return.purchase.user }}</p>
+            <p>Purchase time: {{ return.purchase.bought_at }}</p>
+            {% if request.user.is_superuser %}
+                <form method="post" action="{% url 'shop:delete_return' return.pk %}">
+                    {% csrf_token %}
+                    <input type="submit" value="Decline">
+                </form>
+                <form method="post" action="{% url 'shop:approve_return' return.pk %}">
+                    {% csrf_token %}
+                    <input type="submit" value="Approve">
+                </form>
+            {% endif %}
+        </div>
+    {% endfor %}
+{% endblock %}

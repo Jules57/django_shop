@@ -1,0 +1,18 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+
+{% block title %}{{ product.title }}{% endblock %}
+
+{% block content %}
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        {% if field.errors %}
+            <small>{{ field.errors|striptags }}</small>
+        {% endif %}
+        <button type="submit" class="submit-button">Login</button>
+        <hr>
+{#        <p class="text-center">Forgot your password <a href="#">Reset Password</a></p>#}
+        <p class="text-center">Don't have a account? <a href="{% url 'shop:register' %}">Join Now</a></p>
+    </form>
+{% endblock %}
